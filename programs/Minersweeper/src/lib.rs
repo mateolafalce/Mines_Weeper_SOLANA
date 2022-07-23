@@ -1,6 +1,6 @@
 use anchor_lang::prelude::*;
 
-declare_id!("5zPKcTv1H4YfVGSHyhLdNVSa7Buro8UC4rZQv1ZSXAEv");
+declare_id!("BhuUVWQqk5AaftS4TVkdLGYWCWqhCfQqYDhbUVtE4r9v");
 
 #[program]
 pub mod minersweeper {
@@ -24,9 +24,9 @@ pub mod minersweeper {
         row_colums.row5 = row5;row_colums.row6 = row6;
         row_colums.row7 = row7;row_colums.row8 = row8;
         let mut f1 = row_colums.row1.clone();let mut f2 = row_colums.row2.clone();
-        let mut f2 = row_colums.row3.clone();let mut f2 = row_colums.row4.clone();
-        let mut f2 = row_colums.row5.clone();let mut f2 = row_colums.row6.clone();
-        let mut f2 = row_colums.row7.clone();let mut f2 = row_colums.row8.clone();
+        let mut f3 = row_colums.row3.clone();let mut f4 = row_colums.row4.clone();
+        let mut f5 = row_colums.row5.clone();let mut f6 = row_colums.row6.clone();
+        let mut f7 = row_colums.row7.clone();let mut f8 = row_colums.row8.clone();
 //--------------------------------------------------------------------
         if row_colums.row1.len() != 8 {
             return Err(ErrorCode::ErrorSize.into())
@@ -109,7 +109,7 @@ pub mod minersweeper {
     }
 //--------------------------------------------------------------------
     if row_colums.row1[5] == 7 {
-        msg!("YOU LOST THE BOMB EXPLODED YOU")
+        msg!("YOU LOST THE BOMB EXPLODED YOU");
     }
     if row_colums.row1[5] == 8 {
         f1[5] = 8;
@@ -138,7 +138,7 @@ pub mod minersweeper {
     }
 //--------------------------------------------------------------------
     if row_colums.row2[0] == 7 {
-        msg!("YOU LOST THE BOMB EXPLODED YOU")
+        msg!("YOU LOST THE BOMB EXPLODED YOU");
     }
     if row_colums.row2[0] == 8 {
         f2[0] = 8;
@@ -160,7 +160,7 @@ pub mod minersweeper {
     }
 //--------------------------------------------------------------------
     if row_colums.row2[2] == 7 {
-        msg!("YOU LOST THE BOMB EXPLODED YOU")
+        msg!("YOU LOST THE BOMB EXPLODED YOU");
     }
     if row_colums.row2[2] == 8 {
         f2[2] = 8;
@@ -198,7 +198,7 @@ pub mod minersweeper {
     }
 //--------------------------------------------------------------------
     if row_colums.row2[5] == 7 {
-        msg!("YOU LOST THE BOMB EXPLODED YOU")
+        msg!("YOU LOST THE BOMB EXPLODED YOU");
     }
     if row_colums.row2[5] == 8 {
         f2[5] = 8;
@@ -232,18 +232,132 @@ pub mod minersweeper {
     }
 //--------------------------------------------------------------------
     if row_colums.row3[0] == 7 {
-        f2[] = ;
-        f2[] = ;
+        f2[1] = 2;
 
-        f3[] = ;
-        f3[] = ;
+        f3[0] = 1;
+        f3[1] = 2;
 
-        f4[] = ;
-        f4[] = ;
+        f4[0] = 6;
+        f4[1] = 6;
     }
     if row_colums.row3[0] == 8 {
-        f2[0] = 8;
+        f3[0] = 8;
     }
+//--------------------------------------------------------------------
+    if row_colums.row3[1] == 7 {
+        f2[1] = 2;
+
+        f3[0] = 1;
+        f3[1] = 2;
+        f3[2] = 1;
+
+        f4[0] = 6;
+        f4[1] = 6;
+        f4[2] = 6;
+    }
+    if row_colums.row3[1] == 8 {
+        f3[1] = 8;
+    }
+//--------------------------------------------------------------------
+    if row_colums.row3[2] == 7 {
+        f2[1] = 2;
+        f2[3] = 1;
+
+        f3[1] = 2;
+        f3[2] = 1;
+        f3[3] = 1;
+
+        f4[1] = 6;
+        f4[2] = 6;
+        f4[3] = 6;
+    }
+    if row_colums.row3[2] == 8 {
+        f3[2] = 8;
+    }
+//--------------------------------------------------------------------
+    if row_colums.row3[3] == 7 {
+        f2[4] = 2;
+        f2[3] = 1;
+
+        f3[4] = 1;
+        f3[2] = 1;
+        f3[3] = 1;
+
+        f4[4] = 6;
+        f4[2] = 6;
+        f4[3] = 6;
+    }
+    if row_colums.row3[3] == 8 {
+        f3[3] = 8;
+    }
+//--------------------------------------------------------------------
+    if row_colums.row3[4] == 7 {
+        f2[4] = 2;
+        f2[3] = 1;
+
+        f3[4] = 1;
+        f3[5] = 1;
+        f3[3] = 1;
+
+        f4[4] = 6;
+        f4[5] = 6;
+        f4[3] = 6;
+    }
+    if row_colums.row3[4] == 8 {
+        f3[4] = 8;
+    }
+//--------------------------------------------------------------------
+    if row_colums.row3[5] == 7 {
+        f2[4] = 2;
+        f2[6] = 3;
+
+        f3[4] = 1;
+        f3[5] = 1;
+        f3[6] = 3;
+
+        f4[4] = 6;
+        f4[5] = 6;
+        f4[6] = 2;
+    }
+    if row_colums.row3[5] == 8 {
+        f3[5] = 8;
+    }
+//--------------------------------------------------------------------
+    if row_colums.row3[6] == 7 {
+        f2[7] = 1;
+        f2[6] = 3;
+
+        f3[5] = 1;
+        f3[6] = 3;
+
+        f4[5] = 6;
+        f4[6] = 2;
+    }
+    if row_colums.row3[6] == 8 {
+        f3[6] = 8;
+    }
+//--------------------------------------------------------------------
+    if row_colums.row3[7] == 7 {
+        msg!("YOU LOST THE BOMB EXPLODED YOU");
+    }
+    if row_colums.row3[7] == 8 {
+        f3[7] = 8;
+    }
+//--------------------------------------------------------------------
+    if row_colums.row4[0] == 7 {
+        f3[0] = 1;
+        f3[0] = 3;
+
+        f4[0] = 6;
+        f4[0] = 2;
+
+        f5[0] = 1;
+        f5[0] = 3;
+    }
+    if row_colums.row4[0] == 8 {
+        f4[0] = 8;
+    }
+
 
 
         msg!("{:?}", f1);

@@ -20,7 +20,7 @@ describe("Minersweeper", () => {
     // 8 = 🚩 red flag, here is a bomb
     // 7 = 👇 you select to discover what is in the box. the equivalent of a click
     //--------------------------------------------------------------------------------
-    Buffer.from([7,9,9,9,9,9,9,9]),
+    Buffer.from([9,9,9,9,9,7,9,9]),
     Buffer.from([9,9,9,9,9,9,9,9]),
     Buffer.from([9,9,9,9,9,9,9,9]),
     Buffer.from([9,9,9,9,9,9,9,9]),
@@ -37,7 +37,7 @@ describe("Minersweeper", () => {
       signers: [rowColums],
     });
 
-    console.log("Your signature ", tx);
+    console.log("Your signature", tx);
   })
   
 });
