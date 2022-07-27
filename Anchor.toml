@@ -2,7 +2,7 @@
 seeds = false
 skip-lint = false
 [programs.devnet]
-minersweeper = "BhuUVWQqk5AaftS4TVkdLGYWCWqhCfQqYDhbUVtE4r9v"
+minersweeper = "2AvrHDMx3svcY7LexQx5xPvdC3ZKSZaZ2TXmRG9LFNRv"
 
 [registry]
 url = "https://api.apr.dev"
