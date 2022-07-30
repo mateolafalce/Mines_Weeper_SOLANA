@@ -7,18 +7,18 @@ pub mod minersweeper {
     use super::*;
 
     pub fn create(ctx: Context<Create>,
-        player: Pubkey,
-        row1: Vec<u8>,
-        row2: Vec<u8>,
-        row3: Vec<u8>,
-        row4: Vec<u8>,
-        row5: Vec<u8>,
-        row6: Vec<u8>,
-        row7: Vec<u8>,
-        row8: Vec<u8>
+        user: Pubkey,
+        row1: [u8;8],
+        row2: [u8;8],
+        row3: [u8;8],
+        row4: [u8;8],
+        row5: [u8;8],
+        row6: [u8;8],
+        row7: [u8;8],
+        row8: [u8;8],
     ) -> Result<()> {
         let row_colums = &mut ctx.accounts.row_colums;
-        row_colums.player = player;
+        row_colums.user = user;
         row_colums.row1 = row1;row_colums.row2 = row2;
         row_colums.row3 = row3;row_colums.row4 = row4;
         row_colums.row5 = row5;row_colums.row6 = row6;
@@ -697,17 +697,128 @@ pub mod minersweeper {
     }
 //--------------------------------------------------------------------
     if row_colums.row7[0] == 7 {
-        f6[0] = 2;
+        f6[0] = 6;
         f6[1] = 1;
 
-        f7[0] = 2;
-        f7[1] = 1;
+        f7[0] = 6;
+        f7[1] = 2;
 
-        f8[0] = 2;
+        f8[0] = 6;
         f8[1] = 1;
     }
     if row_colums.row7[0] == 8 {
         f7[0] = 8;
+    }
+//--------------------------------------------------------------------
+    if row_colums.row7[1] == 7 {
+        f6[0] = 6;
+        f6[1] = 1;
+
+        f7[0] = 6;
+        f7[1] = 2;
+        f7[2] = 2;
+
+        f8[0] = 6;
+        f8[1] = 1;
+    }
+    if row_colums.row7[1] == 8 {
+        f7[1] = 8;
+    }
+//--------------------------------------------------------------------
+    if row_colums.row7[2] == 7 {
+        f6[3] = 1;
+        f6[1] = 1;
+
+        f7[3] = 2;
+        f7[1] = 2;
+        f7[2] = 2;
+
+        f8[3] = 1;
+        f8[1] = 1;
+    }
+    if row_colums.row7[2] == 8 {
+        f7[2] = 8;
+    }
+//--------------------------------------------------------------------
+    if row_colums.row7[3] == 7 {
+        f6[3] = 1;
+        f6[4] = 6;
+
+        f7[3] = 2;
+        f7[4] = 6;
+        f7[2] = 2;
+
+        f8[3] = 1;
+        f8[4] = 6;
+    }
+    if row_colums.row7[3] == 8 {
+        f7[3] = 8;
+    }
+//--------------------------------------------------------------------
+    if row_colums.row7[4] == 7 {
+        f6[3] = 1;
+        f6[4] = 6;
+        f6[5] = 1;
+
+        f7[3] = 2;
+        f7[4] = 6;
+        f7[5] = 1;
+
+        f8[3] = 1;
+        f8[4] = 6;
+        f8[5] = 1;
+    }
+    if row_colums.row7[4] == 8 {
+        f7[4] = 8;
+    }
+//--------------------------------------------------------------------
+    if row_colums.row7[5] == 7 {
+        f6[6] = 2;
+        f6[4] = 6;
+        f6[5] = 1;
+
+        f7[4] = 6;
+        f7[5] = 1;
+
+        f8[6] = 1;
+        f8[4] = 6;
+        f8[5] = 1;
+    }
+    if row_colums.row7[5] == 8 {
+        f7[5] = 8;
+    }
+//--------------------------------------------------------------------
+    if row_colums.row7[6] == 7 {
+        msg!("YOU LOST THE BOMB EXPLODED YOU");
+    }
+    if row_colums.row7[6] == 8 {
+        f7[6] = 8;
+    }
+//--------------------------------------------------------------------
+    if row_colums.row7[7] == 7 {
+        f6[6] = 2;
+
+        f7[7] = 2;
+
+        f8[6] = 1;
+        f8[7] = 1;
+    }
+    if row_colums.row7[7] == 8 {
+        f7[7] = 8;
+    }
+//--------------------------------------------------------------------
+    if row_colums.row8[0] == 7 {
+        f6[0] = 2;
+        f6[1] = 2;
+
+        f7[0] = 2;
+        f7[1] = 2;
+
+        f8[0] = 1;
+        f8[1] = 1;
+    }
+    if row_colums.row8[0] == 8 {
+        f8[0] = 8;
     }
 
 
@@ -719,7 +830,10 @@ pub mod minersweeper {
         msg!("{:?}", f6);
         msg!("{:?}", f7);
         msg!("{:?}", f8);
-        msg!("Id: {}", row_colums.player);
+        msg!("Player: {}", row_colums.user);
+        Ok(())
+    }
+    pub fn delete(_ctx: Context<Delete>) -> Result<()> {
         Ok(())
     }
 }
@@ -733,30 +847,36 @@ pub struct Create<'info> {
     pub system_program: Program<'info, System>,
 }
 
+#[derive(Accounts)]
+pub struct Delete<'info> {
+    #[account(mut, has_one = user, close = user)]
+    pub row_colums: Account<'info, Minersweeper>,
+    pub user: Signer<'info>,
+}
+
 #[account]
 pub struct Minersweeper {
-    player: Pubkey,
-    row1: Vec<u8>,
-    row2: Vec<u8>,
-    row3: Vec<u8>,
-    row4: Vec<u8>,
-    row5: Vec<u8>,
-    row6: Vec<u8>,
-    row7: Vec<u8>,
-    row8: Vec<u8>
+    user: Pubkey,
+    row1: [u8;8],
+    row2: [u8;8],
+    row3: [u8;8],
+    row4: [u8;8],
+    row5: [u8;8],
+    row6: [u8;8],
+    row7: [u8;8],
+    row8: [u8;8],
 }
 
 impl Minersweeper {
     const LEN: usize = DISCRIMINATOR 
     + PUBKEY
-    + PREFIX
-    + VECU8;
+    + TURPLE;
 }
 
 const DISCRIMINATOR: usize = 8;
 const PUBKEY: usize = 32;
-const PREFIX: usize = 4 * 8;
-const VECU8: usize = 8 * 8;
+const TURPLE: usize = 8 * 8;
+
 
 
 #[error_code]

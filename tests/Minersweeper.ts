@@ -40,6 +40,13 @@ describe("Minersweeper", () => {
     console.log("Your signature", tx);
   })
   
-  
-
+  it('Deleting add store account', async () => {
+    const tx = await program.rpc.delete({
+        accounts: {
+            rowColums: rowColums.publicKey,
+            user: provider.wallet.publicKey,
+        },
+    });
+    console.log("Deleted",tx)
+  })
 });
