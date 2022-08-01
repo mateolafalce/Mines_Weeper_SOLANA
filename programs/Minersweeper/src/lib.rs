@@ -27,6 +27,7 @@ pub mod minersweeper {
         let mut f3 = row_colums.row3.clone();let mut f4 = row_colums.row4.clone();
         let mut f5 = row_colums.row5.clone();let mut f6 = row_colums.row6.clone();
         let mut f7 = row_colums.row7.clone();let mut f8 = row_colums.row8.clone();
+        let mut you_win: u8 = 0;
 //--------------------------------------------------------------------
         if row_colums.row1.len() != 8 {
             return Err(ErrorCode::ErrorSize.into())
@@ -113,6 +114,7 @@ pub mod minersweeper {
     }
     if row_colums.row1[5] == 8 {
         f1[5] = 8;
+        you_win + 1;
     }
 //--------------------------------------------------------------------
     if row_colums.row1[6] == 7 {
@@ -142,6 +144,7 @@ pub mod minersweeper {
     }
     if row_colums.row2[0] == 8 {
         f2[0] = 8;
+        you_win + 1;
     }
 //--------------------------------------------------------------------
     if row_colums.row2[1] == 7 {
@@ -164,6 +167,7 @@ pub mod minersweeper {
     }
     if row_colums.row2[2] == 8 {
         f2[2] = 8;
+        you_win + 1;
     }
 //--------------------------------------------------------------------
     if row_colums.row2[3] == 7 {
@@ -202,6 +206,7 @@ pub mod minersweeper {
     }
     if row_colums.row2[5] == 8 {
         f2[5] = 8;
+        you_win + 1;
     }
 //--------------------------------------------------------------------
     if row_colums.row2[6] == 7 {
@@ -342,6 +347,7 @@ pub mod minersweeper {
     }
     if row_colums.row3[7] == 8 {
         f3[7] = 8;
+        you_win + 1;
     }
 //--------------------------------------------------------------------
     if row_colums.row4[0] == 7 {
@@ -463,6 +469,7 @@ pub mod minersweeper {
     }
     if row_colums.row4[7] == 8 {
         f4[7] = 8;
+        you_win + 1;
     }
 //--------------------------------------------------------------------
     if row_colums.row5[0] == 7 {
@@ -623,6 +630,7 @@ pub mod minersweeper {
     }
     if row_colums.row6[2] == 8 {
         f6[2] = 8;
+        you_win + 1;
     }
 //--------------------------------------------------------------------
     if row_colums.row6[3] == 7 {
@@ -694,6 +702,7 @@ pub mod minersweeper {
     }
     if row_colums.row6[7] == 8 {
         f6[7] = 8;
+        you_win + 1;
     }
 //--------------------------------------------------------------------
     if row_colums.row7[0] == 7 {
@@ -793,6 +802,7 @@ pub mod minersweeper {
     }
     if row_colums.row7[6] == 8 {
         f7[6] = 8;
+        you_win + 1;
     }
 //--------------------------------------------------------------------
     if row_colums.row7[7] == 7 {
@@ -835,6 +845,7 @@ pub mod minersweeper {
     }
     if row_colums.row8[2] == 8 {
         f8[2] = 8;
+        you_win + 1;
     }
 //--------------------------------------------------------------------
     if row_colums.row8[3] == 7 {
@@ -895,7 +906,10 @@ pub mod minersweeper {
     if row_colums.row8[7] == 8 {
         f8[7] = 8;
     }
-
+//--------------------------------------------------------------------
+    if you_win == 10 {
+        msg!("You Win!! Congratulations");
+    }
 
         msg!("{:?}", f1);
         msg!("{:?}", f2);
